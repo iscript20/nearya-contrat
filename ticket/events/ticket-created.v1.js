@@ -5,9 +5,11 @@ const VERSION = 1;
 
 const REQUIRED_FIELDS = [
   'ticketId',
+  'agencyId',
+  'cityId',
   'companyId',
   'status',
-  'createdBy',
+  'createdById',
   'createdAt',
 ];
 
@@ -33,13 +35,13 @@ function fromTicket(ticket) {
   }
 
   const payload = {
-    ticketId: ticket._id?.toString() ?? ticket.id,
-    companyId: ticket.companyId,
-    status: ticket.status,
-    createdBy: ticket.createdBy,
-    createdAt: ticket.createdAt
-      ? new Date(ticket.createdAt).toISOString()
-      : new Date().toISOString(),
+    ticketId,
+    agencyId,
+    cityId,
+    companyId,
+    participants,
+    createdById,
+    createdAt
   };
 
   validate(payload);
