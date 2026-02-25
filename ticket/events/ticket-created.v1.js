@@ -17,8 +17,17 @@ const REQUIRED_FIELDS = [
  * Validation STRICTE du payload normalisé
  */
 function validate(payload) {
+
+  // 🔒 vérifier existence payload
+  if (!payload || typeof payload !== 'object') {
+    throw new Error(
+      `Invalid ${TYPE} v${VERSION}: payload is required`
+    );
+  }
+
   for (const field of REQUIRED_FIELDS) {
-    if (!payload[field]) {
+
+    if (!(field in payload)) {
       throw new Error(
         `Invalid ${TYPE} v${VERSION}: missing ${field}`
       );
