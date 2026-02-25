@@ -30,18 +30,22 @@ function validate(payload) {
  * 🔁 NORMALISATION depuis le MODEL Ticket (producer)
  */
 function fromTicket(ticket) {
+
   if (!ticket) {
     throw new Error('Ticket is required');
   }
 
   const payload = {
-    ticketId,
-    agencyId,
-    cityId,
-    companyId,
-    participants,
-    createdById,
-    createdAt
+    ticketId: String(ticket._id),
+    agencyId: ticket.agencyId ?? null,
+    cityId: ticket.cityId ?? null,
+    companyId: ticket.companyId ?? null,
+    participants: ticket.participants ?? [],
+    status: ticket.status,
+    createdById: ticket.createdById,
+    createdAt: ticket.createdAt
+      ? new Date(ticket.createdAt).toISOString()
+      : new Date().toISOString()
   };
 
   validate(payload);
@@ -54,7 +58,7 @@ function fromTicket(ticket) {
 }
 
 /**
- * 🔁 NORMALISATION depuis un payload brut (consumer / replay / DLQ)
+ * 🔁 NORMALISATION depuis un payload brut
  */
 function fromPayload(payload) {
   validate(payload);
