@@ -4,18 +4,15 @@ const TYPE = 'TICKET_COMMENT';
 const VERSION = 1;
 
 const REQUIRED_FIELDS = [
+  'commentId',
   'ticketId',
-  'agencyId',
-  'cityId',
-  'companyId',
-  'status',
-  'createdById',
-  'createdAt',
+  'author',
+  'createdAt'
 ];
 
-/**
- * Validation STRICTE du payload normalisé
- */
+// ======================
+// VALIDATION STRICTE
+// ======================
 function validate(payload) {
 
   if (!payload || typeof payload !== 'object') {
@@ -40,25 +37,41 @@ function validate(payload) {
   }
 }
 
-/**
- * 🔁 NORMALISATION depuis le MODEL Ticket (producer)
- */
-function fromTicket(ticket) {
+// ======================
+// FROM MONGOOSE MODEL
+// ======================
+function fromModel(comment) {
 
-  if (!ticket) {
-    throw new Error('Ticket is required');
+  if (!comment) {
+    throw new Error('TicketComment is required');
   }
 
   const payload = {
-    ticketId: String(ticket._id),
-    agencyId: ticket.agencyId ?? null,
-    cityId: ticket.cityId ?? null,
-    companyId: ticket.companyId ?? null,
-    participants: ticket.participants ?? [],
-    status: ticket.status,
-    createdById: ticket.createdById,
-    createdAt: ticket.createdAt
-      ? new Date(ticket.createdAt).toISOString()
+
+    // ======================
+    // IDS
+    // ======================
+    commentId: String(comment._id),
+    ticketId: String(comment.ticket),
+
+    // ======================
+    // AUTHOR (SNAPSHOT ONLY)
+    // ======================
+    authorSnapshot: comment.authorSnapshot ?? null,
+
+    // ======================
+    // CONTENT
+    // ======================
+    comment: comment.comment,
+    visibility: comment.visibility,
+    attachments: comment.attachments ?? [],
+    meta: comment.meta ?? {},
+
+    // ======================
+    // TIME
+    // ======================
+    createdAt: comment.createdAt
+      ? new Date(comment.createdAt).toISOString()
       : new Date().toISOString()
   };
 
@@ -67,20 +80,21 @@ function fromTicket(ticket) {
   return createEvent({
     type: TYPE,
     version: VERSION,
-    payload,
+    payload
   });
 }
 
-/**
- * 🔁 NORMALISATION depuis un payload brut
- */
+// ======================
+// FROM RAW PAYLOAD
+// ======================
 function fromPayload(payload) {
+
   validate(payload);
 
   return createEvent({
     type: TYPE,
     version: VERSION,
-    payload,
+    payload
   });
 }
 
@@ -89,5 +103,5 @@ module.exports = {
   VERSION,
   fromModel,
   fromPayload,
-  validate,
+  validate
 };
