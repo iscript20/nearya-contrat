@@ -54,10 +54,12 @@ function fromModel(message) {
     ticketId: String(message.ticket),
 
     author: message.author
-      ? message.author._id ?
-      String(message.author._id) :
-      String(message.author)
-      : null,
+    ? (
+        typeof message.author.toObject === 'function'
+          ? message.author.toObject()
+          : message.author
+      )
+    : null,
 
     authorScope: message.authorScope,
 
