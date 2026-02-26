@@ -54,7 +54,9 @@ function fromModel(message) {
     ticketId: String(message.ticket),
 
     author: message.author
-      ? String(message.author)
+      ? message.author._id ?
+      String(message.author._id) :
+      String(message.author)
       : null,
 
     authorScope: message.authorScope,
