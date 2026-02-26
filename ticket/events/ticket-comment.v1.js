@@ -6,7 +6,8 @@ const VERSION = 1;
 const REQUIRED_FIELDS = [
   'commentId',
   'ticketId',
-  'author',
+  'authorId',
+  'authorSnapshot',
   'createdAt'
 ];
 
@@ -53,6 +54,7 @@ function fromModel(comment) {
     // ======================
     commentId: String(comment._id),
     ticketId: String(comment.ticket),
+    authorId: String(comment.authorId),
 
     // ======================
     // AUTHOR (SNAPSHOT ONLY)
