@@ -18,7 +18,6 @@ const REQUIRED_FIELDS = [
  */
 function validate(payload) {
 
-  // 🔒 vérifier existence payload
   if (!payload || typeof payload !== 'object') {
     throw new Error(
       `Invalid ${TYPE} v${VERSION}: payload is required`
@@ -27,14 +26,19 @@ function validate(payload) {
 
   for (const field of REQUIRED_FIELDS) {
 
-    if (!(field in payload)) {
+    const value = payload[field];
+
+    if (
+      value === undefined ||
+      value === null ||
+      value === ''
+    ) {
       throw new Error(
         `Invalid ${TYPE} v${VERSION}: missing ${field}`
       );
     }
   }
 }
-
 /**
  * 🔁 NORMALISATION depuis le MODEL Ticket (producer)
  */

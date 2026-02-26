@@ -22,7 +22,14 @@ function validate(payload) {
   }
 
   for (const field of REQUIRED_FIELDS) {
-    if (!(field in payload)) {
+
+    const value = payload[field];
+
+    if (
+      value === undefined ||
+      value === null ||
+      value === ''
+    ) {
       throw new Error(
         `Invalid ${TYPE} v${VERSION}: missing ${field}`
       );
