@@ -1,6 +1,6 @@
 const { createEvent } = require('../../shared/event-envelope.v1');
 
-const TYPE = 'TICKET_CREATED';
+const TYPE = 'TICKET_COMMENT';
 const VERSION = 1;
 
 const REQUIRED_FIELDS = [
@@ -38,7 +38,7 @@ function validate(payload) {
 /**
  * 🔁 NORMALISATION depuis le MODEL Ticket (producer)
  */
-function fromModel(ticket) {
+function fromTicket(ticket) {
 
   if (!ticket) {
     throw new Error('Ticket is required');
