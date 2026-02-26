@@ -40,7 +40,7 @@ function validate(payload) {
 // ======================
 // FROM MONGOOSE MODEL
 // ======================
-function fromModel(message, ticket = {}) {
+function fromModel(message) {
 
   if (!message) {
     throw new Error('TicketMessage is required');
@@ -53,7 +53,7 @@ function fromModel(message, ticket = {}) {
     messageId: String(message._id),
     ticketId: String(message.ticket),
 
-    authorId: message.author
+    author: message.author
       ? String(message.author)
       : null,
 
@@ -62,14 +62,6 @@ function fromModel(message, ticket = {}) {
     message: message.message,
     action: message.action ?? 'REPLY',
     attachments: message.attachments ?? [],
-
-    // ======================
-    // ROUTING DATA (ticket)
-    // ======================
-    companyId: ticket.companyId ?? null,
-    agencyId: ticket.agencyId ?? null,
-    cityId: ticket.cityId ?? null,
-    participants: ticket.participants ?? [],
 
     // ======================
     // TIME
