@@ -5,8 +5,6 @@ const VERSION = 1;
 
 const REQUIRED_FIELDS = [
   'ticketId',
-  'agencyId',
-  'cityId',
   'companyId',
   'status',
   'createdById',
