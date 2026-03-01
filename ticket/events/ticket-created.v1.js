@@ -7,8 +7,7 @@ const REQUIRED_FIELDS = [
   'ticketId',
   'companyId',
   'status',
-  'createdById',
-  'createdAt',
+  'createdAt'
 ];
 
 /**
