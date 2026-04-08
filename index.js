@@ -10,6 +10,8 @@ const TicketCommentV1 =
 //PICKUPS
   const PickupCommentV1 =
   require('./pickup/events/pickup-comment.v1');
+  const PickupCreatedV1 =
+  require('./pickup/events/pickup-created.v1');
 
 // TRANSPORT SERIALIZERS
 const {
@@ -25,6 +27,7 @@ module.exports = {
 
   //events Pickup
   PickupCommentV1,
+  PickupCreatedV1,
 
   // serializers
   serializeEventForRedis,
