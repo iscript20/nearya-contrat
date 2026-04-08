@@ -1,10 +1,15 @@
 // EVENTS
+//TICKETS
 const TicketCreatedV1 =
   require('./ticket/events/ticket-created.v1');
 const TicketMessageV1 =
   require('./ticket/events/ticket-message.v1');
 const TicketCommentV1 =
   require('./ticket/events/ticket-comment.v1');
+
+//PICKUPS
+  const PickupCommentV1 =
+  require('./pickup/events/pickup-comment.v1');
 
 // TRANSPORT SERIALIZERS
 const {
