@@ -18,10 +18,13 @@ const {
 } = require('./transport/redis.serializer');
 
 module.exports = {
-  // events
+  // events Ticket
   TicketCreatedV1,
   TicketMessageV1,
   TicketCommentV1,
+
+  //events Pickup
+  PickupCommentV1,
 
   // serializers
   serializeEventForRedis,
