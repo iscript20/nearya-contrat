@@ -48,7 +48,7 @@ function fromModel(pickup) {
   const payload = {
     pickupId: String(pickup._id),
     cityId: pickup.sendingCity ?? null,
-    companyId: pickup.companyId ?? null,
+    companyId: pickup.company ?? null,
     createdAt: pickup.createdAt
       ? new Date(pickup.createdAt).toISOString()
       : new Date().toISOString()
