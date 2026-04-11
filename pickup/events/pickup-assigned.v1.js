@@ -7,6 +7,7 @@ const REQUIRED_FIELDS = [
   'assignmentId',
   'status',
   'pickupId',
+  'cityId',
   'companyId',
   'collector',
   'confirmedReturns',
@@ -48,7 +49,7 @@ function validate(payload) {
 function fromModel(assignment) {
 
   if (!assignment) {
-    throw new Error('Pickup comment is required');
+    throw new Error('assignment is required');
   }
 
   const payload = {
@@ -59,6 +60,7 @@ function fromModel(assignment) {
     assignmentId: String(assignment._id),
     pickupId: String(assignment.pickup),
     companyId: String(assignment.company),
+    cityId: String(assignment.sendingCity),
 
     status: assignment.status,
     collector: assignment.collector ?? null,
