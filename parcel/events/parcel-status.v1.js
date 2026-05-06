@@ -10,6 +10,7 @@ const VERSION = 1;
 const REQUIRED_FIELDS = [
   '_id',
   'companyId',
+  'seller',
   'cityId',
   'cab',
   'recipient',
