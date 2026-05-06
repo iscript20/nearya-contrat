@@ -15,6 +15,10 @@ const TicketCommentV1 =
   const PickupAssignedV1 =
   require('./pickup/events/pickup-assigned.v1');
 
+//PARCELS_STATUS
+  const ParcelStatusV1 =
+  require('./parcel/events/parcel-status.v1');
+
 // TRANSPORT SERIALIZERS
 const {
   serializeEventForRedis,
@@ -31,6 +35,9 @@ module.exports = {
   PickupCommentV1,
   PickupCreatedV1,
   PickupAssignedV1,
+
+  //event parcel status
+  ParcelStatusV1,
 
   // serializers
   serializeEventForRedis,
