@@ -53,7 +53,7 @@ function fromModel(parcel) {
     _id: String(parcel._id),
     companyId: String(parcel.company),
     cityId: String(parcel.city),
-    cab: parcel.reference,
+    cab: parcel.cab,
     recipient:parcel.recipient,
     recipientPhone: parcel.recipientPhone,
     status: parcel.status,
