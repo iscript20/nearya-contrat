@@ -8,10 +8,10 @@ const VERSION = 1;
 // REQUIRED (core métier)
 // ======================
 const REQUIRED_FIELDS = [
-  'parcelId',
+  '_id',
   'companyId',
   'cityId',
-  'reference',
+  'cab',
   'recipient',
   'recipientPhone',
   'amount',
@@ -50,12 +50,15 @@ function fromModel(parcel) {
     // ======================
     // CORE (REQUIRED)
     // ======================
-    parcelId: String(parcel._id),
+    _id: String(parcel._id),
     companyId: String(parcel.company),
     cityId: String(parcel.city),
-    reference: parcel.reference,
+    cab: parcel.reference,
+    recipient:parcel.recipient,
     recipientPhone: parcel.recipientPhone,
     status: parcel.status,
+    lang:parcel.lang,
+    amount:parcel.amount,
 
     createdAt: parcel.createdAt
       ? new Date(parcel.createdAt).toISOString()
@@ -64,10 +67,7 @@ function fromModel(parcel) {
     // ======================
     // META (OPTIONAL)
     // ======================
-    cab: parcel.cab ?? null,
-    recipient: parcel.recipient ?? null,
     recipientAddress: parcel.recipientAddress ?? null,
-    price: parcel.price ?? null
 
   };
 
