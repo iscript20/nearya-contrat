@@ -53,6 +53,7 @@ function fromModel(parcel) {
     // ======================
     _id: String(parcel._id),
     companyId: String(parcel.company),
+    seller: String(parcel.seller),
     cityId: String(parcel.city),
     cab: parcel.cab,
     recipient:parcel.recipient,
