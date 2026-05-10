@@ -8,9 +8,7 @@ const VERSION = 1;
 // REQUIRED (core métier)
 // ======================
 const REQUIRED_FIELDS = [
-  '_id',
-  'cab',
-  'companyId',
+  '_ids',
   'location'
 ];
 
@@ -44,9 +42,7 @@ function fromModel(parcel) {
     // ======================
     // CORE (REQUIRED)
     // ======================
-    _id: String(parcel._id),
-    companyId: String(parcel.company),
-    cab: parcel.cab,
+    _ids: parcel._ids,
     location:parcel.location
 
   };
