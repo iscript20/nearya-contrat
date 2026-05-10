@@ -9,6 +9,7 @@ const VERSION = 1;
 // ======================
 const REQUIRED_FIELDS = [
   '_ids',
+  'action',
   'location'
 ];
 
@@ -31,10 +32,10 @@ function validate(payload) {
 // ======================
 // FROM MODEL
 // ======================
-function fromModel(parcel) {
+function fromModel(parcels) {
 
-  if (!parcel) {
-    throw new Error('parcel is required');
+  if (!parcels) {
+    throw new Error('parcels is required');
   }
 
   const payload = {
@@ -42,8 +43,9 @@ function fromModel(parcel) {
     // ======================
     // CORE (REQUIRED)
     // ======================
-    _ids: parcel._ids,
-    location:parcel.location
+    _ids: parcels._ids,
+    action: String(parcels.action),
+    location: parcels.location
 
   };
 
