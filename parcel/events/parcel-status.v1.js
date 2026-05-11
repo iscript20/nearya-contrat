@@ -61,6 +61,7 @@ function fromModel(parcel) {
     status: parcel.status,
     lang:parcel.lang,
     amount:parcel.amount,
+    date:parcel.date,
 
     createdAt: parcel.createdAt
       ? new Date(parcel.createdAt).toISOString()
