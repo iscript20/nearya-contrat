@@ -85,6 +85,8 @@ function fromModel(data) {
     action:
       String(data.action),
 
+    source:String(data.source),
+
     location:
       data.location
   };
