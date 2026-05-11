@@ -8,8 +8,7 @@ const VERSION = 1;
 // REQUIRED (core métier)
 // ======================
 const REQUIRED_FIELDS = [
-  'action',
-  'location'
+  'action'
 ];
 
 // ======================
