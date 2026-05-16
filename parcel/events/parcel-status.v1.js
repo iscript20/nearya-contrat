@@ -1,5 +1,5 @@
 const { createEvent } = require('../../shared/event-envelope.v1');
-const { v4: uuid } = require('uuid');
+const crypto = require('crypto');
 
 const TYPE = 'PARCEL_STATUS';
 const VERSION = 1;
@@ -38,6 +38,13 @@ function validate(payload) {
 }
 
 // ======================
+// GENERATE EVENT ID
+// ======================
+function generateEventId() {
+  return crypto.randomUUID();
+}
+
+// ======================
 // FROM MODEL
 // ======================
 function fromModel(parcel) {
@@ -56,12 +63,12 @@ function fromModel(parcel) {
     seller: String(parcel.seller),
     cityId: String(parcel.city),
     cab: parcel.cab,
-    recipient:parcel.recipient,
+    recipient: parcel.recipient,
     recipientPhone: parcel.recipientPhone,
     status: parcel.status,
-    lang:parcel.lang,
-    amount:parcel.amount,
-    date:parcel.date,
+    lang: parcel.lang,
+    amount: parcel.amount,
+    date: parcel.date,
 
     createdAt: parcel.createdAt
       ? new Date(parcel.createdAt).toISOString()
@@ -77,7 +84,7 @@ function fromModel(parcel) {
   validate(payload);
 
   return createEvent({
-    id: uuid(),
+    id: generateEventId(),
     type: TYPE,
     version: VERSION,
     occurredAt: new Date().toISOString(),
@@ -93,7 +100,7 @@ function fromPayload(payload) {
   validate(payload);
 
   return createEvent({
-    id: uuid(),
+    id: generateEventId(),
     type: TYPE,
     version: VERSION,
     occurredAt: new Date().toISOString(),
